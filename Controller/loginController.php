@@ -7,14 +7,17 @@
     $login = new loginModel($objConfig);
     $login->detectPage();
     $check = true;
+
     $currentUser = null;
 
     if (isset($_POST['loginBtn'])) {
         $userName = $_POST['userName'];
         $password = $_POST['password'];
+
         $user = $login->login($userName, $password);
-        if ($user) {
+        if ($user && $userName != '' && $password != '') {
             $_SESSION['userName'] = $user['username'];
+            $_SESSION['fullName'] = $user['fullname'];
         }
         else {
             $check = false;

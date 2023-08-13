@@ -13,9 +13,10 @@
         $fullName = $_POST['fullName'];
         $userName = $_POST['userName'];
         $password = $_POST['password'];
+
         $checks = $signup->checkUser($userName);
 
-        if ($checks) {
+        if ($checks && $fullName != '' && $userName != '' && $password != '') {
             $res = $signup->createUser($fullName, $userName, $password);
             if ($res) {
                 header('Location: ./login.php');
